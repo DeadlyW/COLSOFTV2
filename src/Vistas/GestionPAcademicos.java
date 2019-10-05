@@ -61,7 +61,7 @@ public class GestionPAcademicos extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-        bfacultades.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        bfacultades.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione","Código", "Nombre", "Facultad", "Estado" }));
 
         jButton1.setText("Buscar");
 
