@@ -40,7 +40,7 @@ public class GestionPAcademicos extends javax.swing.JFrame {
         bfacultades = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        agregarBut = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         facultades = new javax.swing.JTable();
         registroscant = new javax.swing.JLabel();
@@ -91,7 +91,12 @@ public class GestionPAcademicos extends javax.swing.JFrame {
 
         jLabel3.setText("Búsqueda");
 
-        jButton2.setText("Agregar");
+        agregarBut.setText("Agregar");
+        agregarBut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarButActionPerformed(evt);
+            }
+        });
 
         dtm.addColumn("Código");
         dtm.addColumn("Nombre");
@@ -126,7 +131,7 @@ public class GestionPAcademicos extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton2))
+                                .addComponent(agregarBut))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
@@ -155,7 +160,7 @@ public class GestionPAcademicos extends javax.swing.JFrame {
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(29, 29, 29)
-                        .addComponent(jButton2)))
+                        .addComponent(agregarBut)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,11 +210,16 @@ public class GestionPAcademicos extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(7, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void agregarButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarButActionPerformed
+       ProgramasAcademicos k = new ProgramasAcademicos();
+       k.setVisible(true);
+    }//GEN-LAST:event_agregarButActionPerformed
 
     /**
      * @param args the command line arguments
@@ -247,6 +257,7 @@ public class GestionPAcademicos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton agregarBut;
     private javax.swing.JComboBox<String> bfacultades;
     private javax.swing.JTextField busqueda;
     private javax.swing.JTextField codproducto;
@@ -254,7 +265,6 @@ public class GestionPAcademicos extends javax.swing.JFrame {
     private javax.swing.JTextField estadofacult;
     private javax.swing.JTable facultades;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
