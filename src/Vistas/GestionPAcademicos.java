@@ -61,8 +61,10 @@ public class GestionPAcademicos extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
+        bfacultades.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         bfacultades.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione","Código", "Nombre", "Facultad", "Estado" }));
 
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jButton1.setText("Buscar");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -89,8 +91,10 @@ public class GestionPAcademicos extends javax.swing.JFrame {
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel3.setText("Búsqueda");
 
+        agregarBut.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         agregarBut.setText("Agregar");
         agregarBut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,17 +106,23 @@ public class GestionPAcademicos extends javax.swing.JFrame {
         dtm.addColumn("Nombre");
         dtm.addColumn("Facultad");
         dtm.addColumn("Estado");
+        facultades.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         facultades.setModel(dtm);
         jScrollPane1.setViewportView(facultades);
 
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel4.setText("Código del Producto");
 
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel5.setText("Nombre:");
 
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel6.setText("Estado:");
 
+        modfacultad.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         modfacultad.setText("Modificar");
 
+        eliminarfacult.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         eliminarfacult.setText("Eliminar");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -143,10 +153,10 @@ public class GestionPAcademicos extends javax.swing.JFrame {
                                     .addComponent(nombrefacult)
                                     .addComponent(estadofacult))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(registroscant, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(modfacultad, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(eliminarfacult))))
+                                    .addComponent(modfacultad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(eliminarfacult, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(33, 33, 33))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -185,8 +195,10 @@ public class GestionPAcademicos extends javax.swing.JFrame {
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel1.setText("GESTION DE PROGRAMAS ACADEMICOS");
 
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel2.setText("Listado de Programas Académicos");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
