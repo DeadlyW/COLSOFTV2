@@ -5,11 +5,18 @@
  */
 package Vistas;
 
+import Modelo.Facultad;
+import Modelo.ProgramaAcademico;
+import Persistencia.ManejadorProgramaAcademico;
+
 /**
  *
  * @author Software
  */
 public class ProgramasAcademicos extends javax.swing.JFrame {
+
+    ManejadorProgramaAcademico facu = new ManejadorProgramaAcademico();
+    ProgramaAcademico fuci = new ProgramaAcademico();
 
     /**
      * Creates new form ProgramasAcademicos
@@ -37,7 +44,7 @@ public class ProgramasAcademicos extends javax.swing.JFrame {
         codAcadmico = new javax.swing.JTextField();
         nomAcademico = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        listaFacultad = new javax.swing.JComboBox<>();
         butSalir = new javax.swing.JButton();
         butGrabar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -63,8 +70,8 @@ public class ProgramasAcademicos extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel5.setText("Facultad");
 
-        jComboBox1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Item 2", "Item 3", "Item 4" }));
+        listaFacultad.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        listaFacultad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Item 2", "Item 3", "Item 4" }));
 
         butSalir.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         butSalir.setText("Salir");
@@ -76,6 +83,11 @@ public class ProgramasAcademicos extends javax.swing.JFrame {
 
         butGrabar.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         butGrabar.setText("Grabar");
+        butGrabar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butGrabarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -101,7 +113,7 @@ public class ProgramasAcademicos extends javax.swing.JFrame {
                         .addGap(57, 57, 57)
                         .addComponent(jLabel5)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(listaFacultad, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(butGrabar)))
@@ -119,7 +131,7 @@ public class ProgramasAcademicos extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(nomAcademico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(listaFacultad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(butSalir)
@@ -166,6 +178,14 @@ public class ProgramasAcademicos extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_butSalirActionPerformed
 
+    private void butGrabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butGrabarActionPerformed
+        fuci.setIdProgramaAcademico(Integer.parseInt(codAcadmico.getText()));
+        fuci.setNombrePrograma(nomAcademico.getText());
+        fuci.setEstado(listaFacultad.getSelectedItem().toString());
+        facu.registrar(fuci);
+        
+    }//GEN-LAST:event_butGrabarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -205,13 +225,13 @@ public class ProgramasAcademicos extends javax.swing.JFrame {
     private javax.swing.JButton butGrabar;
     private javax.swing.JButton butSalir;
     private javax.swing.JTextField codAcadmico;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JComboBox<String> listaFacultad;
     private javax.swing.JTextField nomAcademico;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,9 @@
  */
 package Modelo;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author Deadly
@@ -25,7 +28,17 @@ public class ProgramaAcademico {
         this.idFacultad = idFacultad;
         this.Estado = Estado;
     }
+    
+    public static ProgramaAcademico cargar(ResultSet rs) throws SQLException {
+        ProgramaAcademico us = new ProgramaAcademico();
+        us.setIdFacultad(Integer.parseInt(rs.getString(1)));
+        us.setNombrePrograma(rs.getString(2));
+        us.setIdFacultad(Integer.parseInt(rs.getString(3)));
+        us.setEstado(rs.getString(4));
 
+        return us;
+
+    }
     /**
      * @return the idProgramaAcademico
      */

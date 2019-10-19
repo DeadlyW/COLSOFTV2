@@ -5,10 +5,12 @@ import java.util.logging.*;// libreria para trabajar con logger
 public class ManejadorBaseDatos {
     private Connection conexion; // Abtrae una conexion a la base de datos
     private String usuario = "root"; // usuario con permisos para conectarse a BD
-    private String password = "callofduty4"; // contrase�a del usuario que se puede conectar
+//    private String password = "callofduty4"; // contrase�a del usuario que se puede conectar
+    private String password = ""; // contrase�a del usuario que se puede conectar
     private String driver = "com.mysql.jdbc.Driver"; // Clase del Driver de jConnector
     //cadena de conxion a la base de datos por defecto
-    private String basedatos = "jdbc:mysql://127.0.0.1/math"; 
+//    private String basedatos = "jdbc:mysql://127.0.0.1/math"; 
+    private String basedatos = "jdbc:mysql://localhost/colsoft"; 
     private static ManejadorBaseDatos instancia; // patron de dise�o singleton
     private Logger log = Logger.getLogger(ManejadorBaseDatos.
                                           class.getName());
@@ -177,7 +179,10 @@ public class ManejadorBaseDatos {
         this.log = log;
     }
   
-  
+//    public static void main(String[] args) throws Exception {
+//        ManejadorBaseDatos objMane = new ManejadorBaseDatos();
+//        objMane.conectar();
+//    }
 }
 
     
