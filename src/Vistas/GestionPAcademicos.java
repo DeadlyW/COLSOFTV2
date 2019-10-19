@@ -21,8 +21,7 @@ public class GestionPAcademicos extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setTitle("Gestión de Programas Académicos");
     }
-    
-    
+
     DefaultTableModel dtm = new DefaultTableModel();
 
     /**
@@ -56,6 +55,7 @@ public class GestionPAcademicos extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
@@ -217,8 +217,8 @@ public class GestionPAcademicos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void agregarButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarButActionPerformed
-       ProgramasAcademicos k = new ProgramasAcademicos();
-       k.setVisible(true);
+        ProgramasAcademicos k = new ProgramasAcademicos();
+        k.setVisible(true);
     }//GEN-LAST:event_agregarButActionPerformed
 
     /**
