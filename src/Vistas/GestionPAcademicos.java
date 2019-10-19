@@ -61,6 +61,8 @@ public class GestionPAcademicos extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
+        busqueda.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+
         bfacultades.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         bfacultades.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione","Código", "Nombre", "Facultad", "Estado" }));
 
@@ -113,11 +115,17 @@ public class GestionPAcademicos extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel4.setText("Código del Producto");
 
+        codproducto.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel5.setText("Nombre:");
 
+        nombrefacult.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel6.setText("Estado:");
+
+        estadofacult.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
 
         modfacultad.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         modfacultad.setText("Modificar");

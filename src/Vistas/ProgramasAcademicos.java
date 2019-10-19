@@ -56,6 +56,10 @@ public class ProgramasAcademicos extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel4.setText("Nombre");
 
+        codAcadmico.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+
+        nomAcademico.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel5.setText("Facultad");
 
@@ -152,7 +156,7 @@ public class ProgramasAcademicos extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pack();
