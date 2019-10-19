@@ -5,8 +5,8 @@
  */
 package Persistencia;
 
-import Modelo.Facultad;
-import Modelo.Preinscripcion;
+
+
 import Modelo.ProgramaAcademico;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -131,4 +131,6 @@ public class ManejadorProgramaAcademico implements IDao<ProgramaAcademico> {
         }
         return listcliente;
     }
+    
+    
 }
