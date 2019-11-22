@@ -7,7 +7,7 @@ public class ManejadorBaseDatos {
 
     private Connection conexion; // Abtrae una conexion a la base de datos
     private String usuario = "root"; // usuario con permisos para conectarse a BD
-    private String password = "your_password"; // contrase�a del usuario que se puede conectar
+    private String password = ""; // contrase�a del usuario que se puede conectar
    // private String password = ""; // contrase�a del usuario que se puede conectar
     private String driver = "com.mysql.jdbc.Driver"; // Clase del Driver de jConnector
     //cadena de conxion a la base de datos por defecto

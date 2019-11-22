@@ -5,8 +5,6 @@
  */
 package Persistencia;
 
-
-
 import Modelo.ProgramaAcademico;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,6 +22,7 @@ public class ManejadorProgramaAcademico implements IDao<ProgramaAcademico> {
 
     ManejadorBaseDatos mbd = ManejadorBaseDatos.getInstancia();
     PreparedStatement pst = null;
+    private List<ProgramaAcademico> listcliente;
 
     public ManejadorProgramaAcademico() {
         try {
@@ -36,7 +35,7 @@ public class ManejadorProgramaAcademico implements IDao<ProgramaAcademico> {
     @Override
     public void registrar(ProgramaAcademico entidad) {
         try {
-            pst = mbd.getConexion().prepareStatement("insert into programacademico values(?,?,?,?)");
+            pst = mbd.getConexion().prepareStatement("insert into programaacademico values(?,?,?,?)");
             pst.setString(1, entidad.getIdProgramaAcademico() + "");
             pst.setString(2, entidad.getNombrePrograma());
             pst.setString(3, entidad.getIdFacultad() + "");
@@ -53,11 +52,12 @@ public class ManejadorProgramaAcademico implements IDao<ProgramaAcademico> {
         try {
 
 //       boolean res = false;
-            pst = mbd.getConexion().prepareStatement("Update facultad where set idprogramacademico = ?");
-            pst.setString(1, entidad.getIdProgramaAcademico() + "");
-            pst.setString(2, entidad.getNombrePrograma());
-            pst.setString(3, entidad.getIdFacultad() + "");
-            pst.setString(4, entidad.getEstado());
+            pst = mbd.getConexion().prepareStatement("Update programaacademico set nombreprograma = ?, idfacultad = ?, estado = ? where idprogramaacademico = ?");
+
+            pst.setString(1, entidad.getNombrePrograma());
+            pst.setString(2, entidad.getIdFacultad() + "");
+            pst.setString(3, entidad.getEstado());
+            pst.setString(4, k);
             int r = pst.executeUpdate();
 
         } catch (SQLException ex) {
@@ -78,7 +78,7 @@ public class ManejadorProgramaAcademico implements IDao<ProgramaAcademico> {
     public void eliminar(Object k) {
         try {
 
-            pst = mbd.getConexion().prepareStatement("delete * from facultad where idprogramacademico = ?");
+            pst = mbd.getConexion().prepareStatement("delete from programaacademico where idprogramaacademico = ?");
             pst.setString(1, k.toString().trim());
             int r = pst.executeUpdate();
 
@@ -100,7 +100,7 @@ public class ManejadorProgramaAcademico implements IDao<ProgramaAcademico> {
         ResultSet rs = null;
         ProgramaAcademico us1 = null;
         try {
-            pst = mbd.getConexion().prepareStatement("select * from facultad where idprogramacademico=? and nombre=? and estado=?");
+            pst = mbd.getConexion().prepareStatement("select * from programaacademico where idprogramacademico=? and nombreprograma=? and idfacutlad=? and estado=?");
             pst.setString(1, k.trim());
             pst.setString(2, j.trim());
             pst.setString(3, j.trim());
@@ -119,18 +119,31 @@ public class ManejadorProgramaAcademico implements IDao<ProgramaAcademico> {
     public List<ProgramaAcademico> listar() {
         ResultSet rs = null;
         PreparedStatement pst = null;
-        List<ProgramaAcademico> listcliente = new LinkedList();
+        listcliente = new LinkedList();
         try {
-            pst = mbd.getConexion().prepareStatement("select * from programacademico ");
+            pst = mbd.getConexion().prepareStatement("select * from programaacademico ");
             rs = pst.executeQuery();
             while (rs.next()) {
-                listcliente.add(ProgramaAcademico.cargar(rs));
+                getListcliente().add(ProgramaAcademico.cargar(rs));
             }
         } catch (SQLException ex) {
             Logger.getLogger(ManejadorProgramaAcademico.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return getListcliente();
+    }
+
+    /**
+     * @return the listcliente
+     */
+    public List<ProgramaAcademico> getListcliente() {
         return listcliente;
     }
-    
-    
+
+    /**
+     * @param listcliente the listcliente to set
+     */
+    public void setListcliente(List<ProgramaAcademico> listcliente) {
+        this.listcliente = listcliente;
+    }
+
 }

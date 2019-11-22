@@ -5,6 +5,9 @@
  */
 package Vistas;
 
+import Modelo.ProgramaAcademico;
+import Persistencia.ManejadorProgramaAcademico;
+import java.util.Iterator;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,9 +23,22 @@ public class GestionPAcademicos extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setTitle("Gestión de Programas Académicos");
+        listado();
     }
 
+    ManejadorProgramaAcademico facu = new ManejadorProgramaAcademico();
     DefaultTableModel dtm = new DefaultTableModel();
+
+    public void listado() {
+        dtm.setNumRows(0);
+        facu.listar();
+        Iterator i = facu.getListcliente().iterator();
+        while (i.hasNext()) {
+            ProgramaAcademico m = (ProgramaAcademico) i.next();
+            String[] fil = {m.getIdProgramaAcademico() + "", m.getNombrePrograma(), m.getIdFacultad(), m.getEstado()};
+            dtm.addRow(fil);
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -51,6 +67,8 @@ public class GestionPAcademicos extends javax.swing.JFrame {
         estadofacult = new javax.swing.JTextField();
         modfacultad = new javax.swing.JButton();
         eliminarfacult = new javax.swing.JButton();
+        facultadName = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -110,6 +128,11 @@ public class GestionPAcademicos extends javax.swing.JFrame {
         dtm.addColumn("Estado");
         facultades.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         facultades.setModel(dtm);
+        facultades.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                facultadesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(facultades);
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
@@ -129,9 +152,24 @@ public class GestionPAcademicos extends javax.swing.JFrame {
 
         modfacultad.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         modfacultad.setText("Modificar");
+        modfacultad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modfacultadActionPerformed(evt);
+            }
+        });
 
         eliminarfacult.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         eliminarfacult.setText("Eliminar");
+        eliminarfacult.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarfacultActionPerformed(evt);
+            }
+        });
+
+        facultadName.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+
+        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel7.setText("Facultad:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -154,13 +192,16 @@ public class GestionPAcademicos extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel5)
-                                    .addComponent(jLabel6))
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(codproducto, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-                                    .addComponent(nombrefacult)
-                                    .addComponent(estadofacult))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(facultadName, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(codproducto, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                                        .addComponent(nombrefacult)
+                                        .addComponent(estadofacult)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 188, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(registroscant, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(modfacultad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -195,12 +236,21 @@ public class GestionPAcademicos extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(nombrefacult, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(modfacultad))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(estadofacult, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(eliminarfacult))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(eliminarfacult)
+                        .addContainerGap(29, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(facultadName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(estadofacult, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
         );
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -240,6 +290,30 @@ public class GestionPAcademicos extends javax.swing.JFrame {
         ProgramasAcademicos k = new ProgramasAcademicos();
         k.setVisible(true);
     }//GEN-LAST:event_agregarButActionPerformed
+
+    private void facultadesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_facultadesMouseClicked
+        int x = facultades.getSelectedRow();
+        codproducto.setText(dtm.getValueAt(x, 0).toString());
+        nombrefacult.setText(dtm.getValueAt(x, 1).toString());
+        facultadName.setText(dtm.getValueAt(x, 2).toString());
+        estadofacult.setText(dtm.getValueAt(x, 3).toString());
+    }//GEN-LAST:event_facultadesMouseClicked
+
+    private void eliminarfacultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarfacultActionPerformed
+        int y = facultades.getSelectedRow();
+        facu.eliminar(y);
+        dtm.removeRow(y);
+    }//GEN-LAST:event_eliminarfacultActionPerformed
+
+    private void modfacultadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modfacultadActionPerformed
+        ProgramaAcademico jh = new ProgramaAcademico();
+        jh.setNombrePrograma(nombrefacult.getText());
+        jh.setEstado(estadofacult.getText());
+        jh.setIdFacultad(facultadName.getText());
+        facu.Actualizar(jh, codproducto.getText());
+        System.out.println("Exitoso");
+
+    }//GEN-LAST:event_modfacultadActionPerformed
 
     /**
      * @param args the command line arguments
@@ -283,6 +357,7 @@ public class GestionPAcademicos extends javax.swing.JFrame {
     private javax.swing.JTextField codproducto;
     private javax.swing.JButton eliminarfacult;
     private javax.swing.JTextField estadofacult;
+    private javax.swing.JTextField facultadName;
     private javax.swing.JTable facultades;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -291,6 +366,7 @@ public class GestionPAcademicos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

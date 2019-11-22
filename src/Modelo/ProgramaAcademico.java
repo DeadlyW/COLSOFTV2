@@ -16,29 +16,30 @@ public class ProgramaAcademico {
 
     private int idProgramaAcademico;
     private String nombrePrograma;
-    private int idFacultad;
+    private String idFacultad;
     private String Estado;
 
     public ProgramaAcademico() {
     }
 
-    public ProgramaAcademico(int idProgramaAcademico, String nombrePrograma, int idFacultad, String Estado) {
+    public ProgramaAcademico(int idProgramaAcademico, String nombrePrograma, String idFacultad, String Estado) {
         this.idProgramaAcademico = idProgramaAcademico;
         this.nombrePrograma = nombrePrograma;
         this.idFacultad = idFacultad;
         this.Estado = Estado;
     }
-    
+
     public static ProgramaAcademico cargar(ResultSet rs) throws SQLException {
         ProgramaAcademico us = new ProgramaAcademico();
-        us.setIdFacultad(Integer.parseInt(rs.getString(1)));
+        us.setIdProgramaAcademico(Integer.parseInt(rs.getString(1)));
         us.setNombrePrograma(rs.getString(2));
-        us.setIdFacultad(Integer.parseInt(rs.getString(3)));
+        us.setIdFacultad(rs.getString(3));
         us.setEstado(rs.getString(4));
 
         return us;
 
     }
+
     /**
      * @return the idProgramaAcademico
      */
@@ -70,14 +71,14 @@ public class ProgramaAcademico {
     /**
      * @return the idFacultad
      */
-    public int getIdFacultad() {
+    public String getIdFacultad() {
         return idFacultad;
     }
 
     /**
      * @param idFacultad the idFacultad to set
      */
-    public void setIdFacultad(int idFacultad) {
+    public void setIdFacultad(String idFacultad) {
         this.idFacultad = idFacultad;
     }
 
