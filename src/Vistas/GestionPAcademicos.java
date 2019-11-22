@@ -7,6 +7,7 @@ package Vistas;
 
 import Modelo.ProgramaAcademico;
 import Persistencia.ManejadorProgramaAcademico;
+import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -109,6 +110,11 @@ public class GestionPAcademicos extends javax.swing.JFrame implements Runnable {
 
         jButton1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jButton1.setText("Buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -361,6 +367,69 @@ public class GestionPAcademicos extends javax.swing.JFrame implements Runnable {
         listado();
     }//GEN-LAST:event_jLabel1MouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        for (int i = 0; i < facultades.getRowCount(); i++) {
+            String data = busqueda.getText();
+            if (bfacultades.getSelectedItem().equals("Código")) {
+                if (dtm.getValueAt(i, 0).toString().equals(data)) {
+                    String x = dtm.getValueAt(i, 0).toString();
+                    String x1 = dtm.getValueAt(i, 1).toString();
+                    String x2 = dtm.getValueAt(i, 2).toString();
+                    String x3 = dtm.getValueAt(i, 3).toString();
+
+                    dtm.setNumRows(0);
+                    String[] fila = {x, x1, x2, x3};
+                    dtm.addRow(fila);
+                    break;
+                }
+            } else if (bfacultades.getSelectedItem().equals("Nombre")) {
+                if (dtm.getValueAt(i, 1).toString().equals(data)) {
+                    String x = dtm.getValueAt(i, 0).toString();
+                    String x1 = dtm.getValueAt(i, 1).toString();
+                    String x2 = dtm.getValueAt(i, 2).toString();
+                    String x3 = dtm.getValueAt(i, 3).toString();
+
+                    dtm.setNumRows(0);
+                    String[] fila = {x, x1, x2, x3};
+                    dtm.addRow(fila);
+                    break;
+                }
+            } else if (bfacultades.getSelectedItem().equals("Facultad")) {
+                if (dtm.getValueAt(i, 2).toString().equals(data)) {
+                    String x = dtm.getValueAt(i, 0).toString();
+                    String x1 = dtm.getValueAt(i, 1).toString();
+                    String x2 = dtm.getValueAt(i, 2).toString();
+                    String x3 = dtm.getValueAt(i, 3).toString();
+
+                    dtm.setNumRows(0);
+                    String[] fila = {x, x1, x2, x3};
+                    dtm.addRow(fila);
+                    break;
+                }
+
+                /*else if (bfacultades.getSelectedItem().equals("Estado")) {
+                if (dtm.getValueAt(i, 3).toString().equals(data)) {
+                    ArrayList ki = new ArrayList();
+                    String x = dtm.getValueAt(i, 0).toString();
+                    String x1 = dtm.getValueAt(i, 1).toString();
+                    String x2 = dtm.getValueAt(i, 2).toString();
+                    String x3 = dtm.getValueAt(i, 3).toString();
+
+                    String[] fila = {x, x1, x2, x3};
+                    ki.add(fila);
+                    dtm.setNumRows(0);
+                    dtm.addRow(fila);
+                    break;
+
+                }*/
+            }
+        }
+        if (bfacultades.getSelectedItem().equals("Seleccione")) {
+            dtm.setNumRows(0);
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -375,16 +444,24 @@ public class GestionPAcademicos extends javax.swing.JFrame implements Runnable {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GestionPAcademicos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GestionPAcademicos.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GestionPAcademicos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GestionPAcademicos.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GestionPAcademicos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GestionPAcademicos.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GestionPAcademicos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GestionPAcademicos.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
