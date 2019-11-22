@@ -8,7 +8,6 @@ package Vistas;
 import Modelo.ProgramaAcademico;
 import Persistencia.ManejadorProgramaAcademico;
 
-
 /**
  *
  * @author Software
@@ -179,11 +178,11 @@ public class ProgramasAcademicos extends javax.swing.JFrame {
     }//GEN-LAST:event_butSalirActionPerformed
 
     private void butGrabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butGrabarActionPerformed
-      /*  fuci.setIdProgramaAcademico(Integer.parseInt(codAcadmico.getText()));
+        fuci.setIdProgramaAcademico(Integer.parseInt(codAcadmico.getText()));
         fuci.setNombrePrograma(nomAcademico.getText());
         fuci.setEstado(listaFacultad.getSelectedItem().toString());
-        facu.registrar(fuci);*/
-        
+        facu.registrar(fuci);
+
     }//GEN-LAST:event_butGrabarActionPerformed
 
     /**
