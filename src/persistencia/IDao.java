@@ -15,6 +15,6 @@ public interface IDao <T>{
     public void registrar(T entidad);
     public void Actualizar(T entidad, String k);
     public void eliminar(Object k);
-    public T consultar(String k,String j);
+    public T consultar(String k);
     public List<T> listar();
 }

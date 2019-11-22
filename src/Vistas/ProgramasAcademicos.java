@@ -9,6 +9,7 @@ package Vistas;
 import Modelo.ProgramaAcademico;
 import Persistencia.ManejadorProgramaAcademico;
 import java.awt.Color;
+import java.util.Iterator;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -239,23 +240,39 @@ public class ProgramasAcademicos extends javax.swing.JFrame {
         UI.put("Panel.background", Color.GREEN);
         UI.put("Button.background", Color.GREEN);
         UIManager.getLookAndFeelDefaults().put("Panel.background", Color.GREEN);*/
-        if (codAcadmico.getText().equals("")) {
-            campReq1.setText("Campo Requerido");
-            aste1.setText("*");
-        } else if (nomAcademico.getText().equals("")) {
-            campReq2.setText("Campo Requerido");
-            aste2.setText("*");
-        } else if (listaFacultad.getSelectedItem().equals("Seleccione")) {
-            campReq3.setText("Campo Requerido");
-            aste3.setText("*");
-        } else {
-            fuci.setIdProgramaAcademico(Integer.parseInt(codAcadmico.getText()));
-            fuci.setNombrePrograma(nomAcademico.getText());
-            fuci.setIdFacultad(listaFacultad.getSelectedItem().toString());
-            fuci.setEstado("Activo");
-            facu.registrar(fuci);
-            JOptionPane.showMessageDialog(null, "Tu registro ha sido agregado", "ACCIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/icono/check.png"));
 
+        facu.listar();
+        Iterator i = facu.getListcliente().iterator();
+        while (i.hasNext()) {
+            ProgramaAcademico m = (ProgramaAcademico) i.next();
+            System.out.println(m.getIdProgramaAcademico());
+            if (m.getIdProgramaAcademico() == Integer.parseInt(codAcadmico.getText())) {
+                JOptionPane.showMessageDialog(null, "Ya existe un registro con el código ingresado", "ALTO AHÍ", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/icono/warning.png"));
+
+            } else if (m.getIdProgramaAcademico() != Integer.parseInt(codAcadmico.getText())) {
+                if (codAcadmico.getText().equals("")) {
+                    campReq1.setText("Campo Requerido");
+                    aste1.setText("*");
+                } else if (nomAcademico.getText().equals("")) {
+                    campReq2.setText("Campo Requerido");
+                    aste2.setText("*");
+                } else if (listaFacultad.getSelectedItem().equals("Seleccione")) {
+                    campReq3.setText("Campo Requerido");
+                    aste3.setText("*");
+                } else {
+                    fuci.setIdProgramaAcademico(Integer.parseInt(codAcadmico.getText()));
+                    fuci.setNombrePrograma(nomAcademico.getText());
+                    fuci.setIdFacultad(listaFacultad.getSelectedItem().toString());
+                    fuci.setEstado("Activo");
+                    facu.registrar(fuci);
+                    JOptionPane.showMessageDialog(null, "Tu registro ha sido agregado", "ACCIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/icono/check.png"));
+                    nomAcademico.setText("");
+                    listaFacultad.setSelectedItem("Seleccione");
+                    codAcadmico.setText("");
+                    codAcadmico.requestFocus();
+                    //   }
+                }
+            }
         }
     }//GEN-LAST:event_butGrabarActionPerformed
 

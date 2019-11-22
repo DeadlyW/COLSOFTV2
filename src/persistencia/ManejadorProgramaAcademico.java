@@ -96,15 +96,13 @@ public class ManejadorProgramaAcademico implements IDao<ProgramaAcademico> {
     }
 
     @Override
-    public ProgramaAcademico consultar(String k, String j) {
+    public ProgramaAcademico consultar(String k) {
         ResultSet rs = null;
         ProgramaAcademico us1 = null;
         try {
-            pst = mbd.getConexion().prepareStatement("select * from programaacademico where idprogramacademico=? and nombreprograma=? and idfacutlad=? and estado=?");
+            pst = mbd.getConexion().prepareStatement("select * from programaacademico where idprogramaacademico=?");
             pst.setString(1, k.trim());
-            pst.setString(2, j.trim());
-            pst.setString(3, j.trim());
-            pst.setString(4, j.trim());
+
             rs = pst.executeQuery();
             while (rs.next()) {
                 us1 = ProgramaAcademico.cargar(rs);

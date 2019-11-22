@@ -8,13 +8,15 @@ package Vistas;
 import Modelo.ProgramaAcademico;
 import Persistencia.ManejadorProgramaAcademico;
 import java.util.Iterator;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Estudiante
  */
-public class GestionPAcademicos extends javax.swing.JFrame {
+public class GestionPAcademicos extends javax.swing.JFrame implements Runnable {
 
     /**
      * Creates new form GestionPAcademicos
@@ -24,10 +26,30 @@ public class GestionPAcademicos extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setTitle("Gestión de Programas Académicos");
         listado();
+        h1 = new Thread(this);
+        h1.start();
     }
-
+    Thread h1;
     ManejadorProgramaAcademico facu = new ManejadorProgramaAcademico();
     DefaultTableModel dtm = new DefaultTableModel();
+
+    public void run() {
+        Thread ct = Thread.currentThread();
+        while (ct == h1) {
+            int h = facultades.getRowCount();
+            if (h > 0) {
+                registroscant.setText(h + " " + "Registros");
+            } else {
+                registroscant1.setText("No se encontraron registros");
+                registroscant.setText(0 + " " + "Registros");
+            }
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+
+            }
+        }
+    }
 
     public void listado() {
         dtm.setNumRows(0);
@@ -64,11 +86,12 @@ public class GestionPAcademicos extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         nombrefacult = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        estadofacult = new javax.swing.JTextField();
         modfacultad = new javax.swing.JButton();
         eliminarfacult = new javax.swing.JButton();
         facultadName = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        estadoCom = new javax.swing.JComboBox<>();
+        registroscant1 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -148,8 +171,6 @@ public class GestionPAcademicos extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel6.setText("Estado:");
 
-        estadofacult.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-
         modfacultad.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         modfacultad.setText("Modificar");
         modfacultad.addActionListener(new java.awt.event.ActionListener() {
@@ -171,6 +192,8 @@ public class GestionPAcademicos extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel7.setText("Facultad:");
 
+        estadoCom.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -190,22 +213,26 @@ public class GestionPAcademicos extends javax.swing.JFrame {
                                 .addComponent(agregarBut))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel6)
-                                    .addComponent(jLabel7))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(facultadName, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(codproducto, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-                                        .addComponent(nombrefacult)
-                                        .addComponent(estadofacult)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 188, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(registroscant, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(modfacultad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(eliminarfacult, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel4)
+                                    .addComponent(registroscant1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(0, 0, 0)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(facultadName)
+                                            .addComponent(codproducto, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                                            .addComponent(nombrefacult)
+                                            .addComponent(estadoCom, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(modfacultad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(eliminarfacult, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(registroscant, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(33, 33, 33))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -222,15 +249,14 @@ public class GestionPAcademicos extends javax.swing.JFrame {
                         .addComponent(agregarBut)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(registroscant, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(codproducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(registroscant1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(registroscant, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(codproducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -242,19 +268,24 @@ public class GestionPAcademicos extends javax.swing.JFrame {
                         .addComponent(eliminarfacult)
                         .addContainerGap(29, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(facultadName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(estadofacult, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(estadoCom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())))
         );
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel1.setText("GESTION DE PROGRAMAS ACADEMICOS");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel2.setText("Listado de Programas Académicos");
@@ -294,26 +325,41 @@ public class GestionPAcademicos extends javax.swing.JFrame {
     private void facultadesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_facultadesMouseClicked
         int x = facultades.getSelectedRow();
         codproducto.setText(dtm.getValueAt(x, 0).toString());
+        codproducto.setEnabled(false);
         nombrefacult.setText(dtm.getValueAt(x, 1).toString());
         facultadName.setText(dtm.getValueAt(x, 2).toString());
-        estadofacult.setText(dtm.getValueAt(x, 3).toString());
+        //if (dtm.getValueAt(x, 3).toString().equals("Activo")) {
+        estadoCom.setSelectedItem(dtm.getValueAt(x, 3).toString());
+        //}
+
     }//GEN-LAST:event_facultadesMouseClicked
 
     private void eliminarfacultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarfacultActionPerformed
         int y = facultades.getSelectedRow();
-        facu.eliminar(y);
-        dtm.removeRow(y);
+        if (y > 0) {
+            facu.eliminar(dtm.getValueAt(y, 0));
+            dtm.removeRow(y);
+            JOptionPane.showMessageDialog(null, "Tu registro ha sido eliminado", "ACCIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/icono/check.png"));
+
+        }
+
     }//GEN-LAST:event_eliminarfacultActionPerformed
 
     private void modfacultadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modfacultadActionPerformed
         ProgramaAcademico jh = new ProgramaAcademico();
         jh.setNombrePrograma(nombrefacult.getText());
-        jh.setEstado(estadofacult.getText());
+        jh.setEstado(estadoCom.getSelectedItem().toString());
         jh.setIdFacultad(facultadName.getText());
         facu.Actualizar(jh, codproducto.getText());
+        JOptionPane.showMessageDialog(null, "Tu registro ha sido modificado", "ACCIÓN EXITOSA", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/icono/check.png"));
+        listado();
         System.out.println("Exitoso");
 
     }//GEN-LAST:event_modfacultadActionPerformed
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        listado();
+    }//GEN-LAST:event_jLabel1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -356,7 +402,7 @@ public class GestionPAcademicos extends javax.swing.JFrame {
     private javax.swing.JTextField busqueda;
     private javax.swing.JTextField codproducto;
     private javax.swing.JButton eliminarfacult;
-    private javax.swing.JTextField estadofacult;
+    private javax.swing.JComboBox<String> estadoCom;
     private javax.swing.JTextField facultadName;
     private javax.swing.JTable facultades;
     private javax.swing.JButton jButton1;
@@ -373,5 +419,6 @@ public class GestionPAcademicos extends javax.swing.JFrame {
     private javax.swing.JButton modfacultad;
     private javax.swing.JTextField nombrefacult;
     private javax.swing.JLabel registroscant;
+    private javax.swing.JLabel registroscant1;
     // End of variables declaration//GEN-END:variables
 }
